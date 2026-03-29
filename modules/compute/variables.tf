@@ -28,11 +28,6 @@ variable "region" {
   type        = string
 }
 
-variable "vpc_self_link" {
-  description = "Self link of the VPC network."
-  type        = string
-}
-
 variable "private_subnet_self_links" {
   description = "List of self links for private subnets."
   type        = list(string)

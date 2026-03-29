@@ -79,14 +79,3 @@ variable "enable_private_google_access" {
   default     = true
 }
 
-variable "kms_key_id" {
-  description = "The Cloud KMS key resource name for encrypting flow logs in Cloud Logging. Leave empty to use Google-managed encryption."
-  type        = string
-  default     = ""
-}
-
-variable "tags" {
-  description = "A map of labels to apply to all resources created by this module."
-  type        = map(string)
-  default     = {}
-}

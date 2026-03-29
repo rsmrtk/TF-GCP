@@ -39,12 +39,6 @@ variable "vpc_connector_id" {
   default     = ""
 }
 
-variable "kms_key_id" {
-  description = "Cloud KMS key ID for CMEK encryption. Leave empty to use Google-managed encryption."
-  type        = string
-  default     = ""
-}
-
 variable "services" {
   description = "Map of Cloud Run service configurations."
   type = map(object({

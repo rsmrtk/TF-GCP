@@ -1,3 +1,1 @@
-data "google_project" "current" {
-  project_id = var.project_id
-}
+# No data sources needed -- the global IAM module references variables directly.

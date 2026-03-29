@@ -47,12 +47,6 @@ variable "gcs_bucket_name" {
   default     = ""
 }
 
-variable "backend_service_id" {
-  description = "The self link or ID of the backend service to use as the CDN origin. Required when origin_type is 'backend_service'."
-  type        = string
-  default     = ""
-}
-
 # -----------------------------------------------------------------------------
 # SSL and Security
 # -----------------------------------------------------------------------------

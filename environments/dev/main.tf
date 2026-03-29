@@ -12,8 +12,6 @@ module "networking" {
   single_nat_gateway           = true
   enable_flow_logs             = true
   enable_private_google_access = true
-
-  tags = local.common_labels
 }
 
 module "security" {
@@ -24,7 +22,6 @@ module "security" {
   project_id  = var.project_id
   region      = var.gcp_region
   vpc_id      = module.networking.vpc_self_link
-  vpc_name    = module.networking.vpc_name
 
   enable_cloud_armor = false
 
@@ -38,8 +35,6 @@ module "iam" {
   environment = var.environment
   project_id  = var.project_id
   kms_key_id  = module.security.kms_key_id
-
-  labels = local.common_labels
 }
 
 module "gcs" {
@@ -97,7 +92,6 @@ module "compute" {
   environment               = var.environment
   project_id                = var.project_id
   region                    = var.gcp_region
-  vpc_self_link             = module.networking.vpc_self_link
   private_subnet_self_links = module.networking.private_subnet_self_links
   lb_firewall_tag           = module.security.lb_firewall_tag
   app_firewall_tag          = module.security.app_firewall_tag

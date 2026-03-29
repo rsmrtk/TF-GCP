@@ -47,11 +47,6 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "vpc_name" {
-  description = "The VPC network name for firewall rule naming."
-  type        = string
-}
-
 variable "enable_cloud_armor" {
   description = "Whether to create a Cloud Armor security policy (equivalent to AWS WAF)."
   type        = bool
