@@ -145,13 +145,15 @@ module "compute" {
 module "gke" {
   source = "../../modules/gke"
 
-  project                   = var.project
-  environment               = var.environment
-  project_id                = var.project_id
-  region                    = var.gcp_region
-  vpc_self_link             = module.networking.vpc_self_link
-  private_subnet_self_links = module.networking.private_subnet_self_links
-  kms_key_id                = module.security.kms_key_id
+  project                       = var.project
+  environment                   = var.environment
+  project_id                    = var.project_id
+  region                        = var.gcp_region
+  vpc_self_link                 = module.networking.vpc_self_link
+  private_subnet_self_links     = module.networking.private_subnet_self_links
+  pods_secondary_range_name     = module.networking.pods_secondary_range_name
+  services_secondary_range_name = module.networking.services_secondary_range_name
+  kms_key_id                    = module.security.kms_key_id
 
   node_pools = {
     general = {

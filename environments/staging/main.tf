@@ -128,14 +128,16 @@ module "compute" {
 module "gke" {
   source = "../../modules/gke"
 
-  project                   = var.project
-  environment               = var.environment
-  project_id                = var.project_id
-  region                    = var.gcp_region
-  vpc_self_link             = module.networking.vpc_self_link
-  private_subnet_self_links = module.networking.private_subnet_self_links
-  cluster_version           = "1.30"
-  kms_key_id                = module.security.kms_key_id
+  project                       = var.project
+  environment                   = var.environment
+  project_id                    = var.project_id
+  region                        = var.gcp_region
+  vpc_self_link                 = module.networking.vpc_self_link
+  private_subnet_self_links     = module.networking.private_subnet_self_links
+  pods_secondary_range_name     = module.networking.pods_secondary_range_name
+  services_secondary_range_name = module.networking.services_secondary_range_name
+  cluster_version               = "1.30"
+  kms_key_id                    = module.security.kms_key_id
 
   node_pools = {
     general = {
@@ -193,7 +195,6 @@ module "monitoring" {
   environment           = var.environment
   project_id            = var.project_id
   alarm_email_endpoints = []
-  kms_key_id            = ""
 
   labels = local.common_labels
 }

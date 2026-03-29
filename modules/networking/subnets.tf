@@ -48,6 +48,17 @@ resource "google_compute_subnetwork" "private" {
   ip_cidr_range            = cidrsubnet(var.vpc_cidr, 8, length(var.azs) + count.index)
   private_ip_google_access = var.enable_private_google_access
 
+  # Secondary ranges for GKE pods and services
+  secondary_ip_range {
+    range_name    = "${local.name_prefix}-pods"
+    ip_cidr_range = cidrsubnet("10.100.0.0/14", 2, count.index)
+  }
+
+  secondary_ip_range {
+    range_name    = "${local.name_prefix}-services"
+    ip_cidr_range = cidrsubnet("10.104.0.0/20", 2, count.index)
+  }
+
   dynamic "log_config" {
     for_each = var.enable_flow_logs ? [1] : []
 

@@ -54,7 +54,7 @@ resource "google_container_cluster" "this" {
 
   # Binary Authorization
   binary_authorization {
-    evaluation_mode = "PROJECT_SINGLETON_POLICY_RESOURCE"
+    evaluation_mode = "PROJECT_SINGLETON_POLICY_ENFORCE"
   }
 
   # Application-layer secrets encryption via Cloud KMS

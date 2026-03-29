@@ -45,6 +45,16 @@ output "private_subnet_self_links" {
   value       = google_compute_subnetwork.private[*].self_link
 }
 
+output "pods_secondary_range_name" {
+  description = "Name of the secondary IP range for GKE pods."
+  value       = "${local.name_prefix}-pods"
+}
+
+output "services_secondary_range_name" {
+  description = "Name of the secondary IP range for GKE services."
+  value       = "${local.name_prefix}-services"
+}
+
 ################################################################################
 # Data Subnets
 ################################################################################
