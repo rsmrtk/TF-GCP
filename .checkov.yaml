@@ -1,0 +1,16 @@
+branch: main
+compact: true
+directory:
+  - .
+download-external-modules: false
+evaluate-variables: true
+framework:
+  - terraform
+output:
+  - cli
+  - junitxml
+quiet: false
+skip-check:
+  - CKV_GCP_62    # GCS public access -- enforced via uniform_bucket_level_access
+  - CKV_GCP_78    # KMS rotation set per-key, not globally
+soft-fail: false
