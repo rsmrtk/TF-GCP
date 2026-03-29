@@ -52,8 +52,8 @@ variable "alert_policies" {
   description = "Map of alert policy configurations. Each key becomes part of the alert policy display name."
   type = map(object({
     description        = optional(string, "")
-    metric_type        = string          # e.g. "compute.googleapis.com/instance/cpu/utilization"
-    comparison         = string          # COMPARISON_GT, COMPARISON_LT, etc.
+    metric_type        = string # e.g. "compute.googleapis.com/instance/cpu/utilization"
+    comparison         = string # COMPARISON_GT, COMPARISON_LT, etc.
     threshold_value    = number
     duration           = optional(string, "300s")
     alignment_period   = optional(string, "300s")
@@ -82,7 +82,7 @@ variable "dashboard_widgets" {
   type = list(object({
     title       = string
     metric_type = optional(string, "")
-    widget_type = optional(string, "xy_chart")   # xy_chart, scorecard, text
+    widget_type = optional(string, "xy_chart") # xy_chart, scorecard, text
     text        = optional(string, "")
   }))
   default = []

@@ -38,8 +38,8 @@ variable "kms_key_id" {
 variable "buckets" {
   description = "Map of GCS bucket configurations."
   type = map(object({
-    purpose    = optional(string, "")
-    versioning = optional(bool, false)
+    purpose       = optional(string, "")
+    versioning    = optional(bool, false)
     storage_class = optional(string, "STANDARD")
     lifecycle_rules = optional(list(object({
       id                                 = string

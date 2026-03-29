@@ -27,7 +27,7 @@ locals {
               content = widget.text
               format  = "MARKDOWN"
             }
-          } : widget.widget_type == "scorecard" ? {
+            } : widget.widget_type == "scorecard" ? {
             title = widget.title
             scorecard = {
               timeSeriesQuery = {
@@ -41,7 +41,7 @@ locals {
                 }
               }
             }
-          } : {
+            } : {
             title = widget.title
             xyChart = {
               dataSets = [
@@ -56,7 +56,7 @@ locals {
                       }
                     }
                   }
-                  plotType   = "LINE"
+                  plotType       = "LINE"
                   legendTemplate = widget.title
                 },
               ]

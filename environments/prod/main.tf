@@ -185,20 +185,20 @@ module "cloud_run" {
 module "cloud_sql" {
   source = "../../modules/cloud-sql"
 
-  project                  = var.project
-  environment              = var.environment
-  project_id               = var.project_id
-  region                   = var.gcp_region
-  vpc_self_link            = module.networking.vpc_self_link
-  database_version         = "POSTGRES_16"
-  tier                     = "db-custom-4-15360"
-  disk_size                = 100
-  disk_autoresize_limit    = 500
-  availability_type        = "REGIONAL"
-  backup_retained_backups  = 35
-  deletion_protection      = true
-  enable_insights          = true
-  kms_key_id               = module.security.kms_key_id
+  project                 = var.project
+  environment             = var.environment
+  project_id              = var.project_id
+  region                  = var.gcp_region
+  vpc_self_link           = module.networking.vpc_self_link
+  database_version        = "POSTGRES_16"
+  tier                    = "db-custom-4-15360"
+  disk_size               = 100
+  disk_autoresize_limit   = 500
+  availability_type       = "REGIONAL"
+  backup_retained_backups = 35
+  deletion_protection     = true
+  enable_insights         = true
+  kms_key_id              = module.security.kms_key_id
 
   labels = local.common_labels
 }

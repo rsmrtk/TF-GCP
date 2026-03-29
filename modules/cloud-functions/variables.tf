@@ -51,10 +51,10 @@ variable "functions" {
   description = "Map of Cloud Functions v2 configurations. Each key becomes part of the function name."
   type = map(object({
     description      = optional(string, "")
-    runtime          = string                             # e.g. "python312", "nodejs20", "go122"
-    entry_point      = string                             # function name
-    source_bucket    = string                             # GCS bucket with source archive
-    source_object    = string                             # GCS object path
+    runtime          = string # e.g. "python312", "nodejs20", "go122"
+    entry_point      = string # function name
+    source_bucket    = string # GCS bucket with source archive
+    source_object    = string # GCS object path
     memory_mb        = optional(number, 256)
     timeout_seconds  = optional(number, 60)
     min_instances    = optional(number, 0)

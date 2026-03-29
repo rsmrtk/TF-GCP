@@ -9,8 +9,8 @@ module "networking" {
   azs         = local.azs
 
   # single Cloud NAT saves costs in dev
-  single_nat_gateway         = true
-  enable_flow_logs           = true
+  single_nat_gateway           = true
+  enable_flow_logs             = true
   enable_private_google_access = true
 
   tags = local.common_labels
@@ -93,20 +93,20 @@ module "artifact_registry" {
 module "compute" {
   source = "../../modules/compute"
 
-  project                    = var.project
-  environment                = var.environment
-  project_id                 = var.project_id
-  region                     = var.gcp_region
-  vpc_self_link              = module.networking.vpc_self_link
-  private_subnet_self_links  = module.networking.private_subnet_self_links
-  lb_firewall_tag            = module.security.lb_firewall_tag
-  app_firewall_tag           = module.security.app_firewall_tag
-  machine_type               = "e2-micro"
-  service_account_email      = module.iam.compute_sa_email
-  min_size                   = 1
-  max_size                   = 2
-  desired_size               = 1
-  kms_key_id                 = module.security.kms_key_id
+  project                   = var.project
+  environment               = var.environment
+  project_id                = var.project_id
+  region                    = var.gcp_region
+  vpc_self_link             = module.networking.vpc_self_link
+  private_subnet_self_links = module.networking.private_subnet_self_links
+  lb_firewall_tag           = module.security.lb_firewall_tag
+  app_firewall_tag          = module.security.app_firewall_tag
+  machine_type              = "e2-micro"
+  service_account_email     = module.iam.compute_sa_email
+  min_size                  = 1
+  max_size                  = 2
+  desired_size              = 1
+  kms_key_id                = module.security.kms_key_id
 
   labels = local.common_labels
 }
@@ -114,13 +114,13 @@ module "compute" {
 module "gke" {
   source = "../../modules/gke"
 
-  project                = var.project
-  environment            = var.environment
-  project_id             = var.project_id
-  region                 = var.gcp_region
-  vpc_self_link          = module.networking.vpc_self_link
+  project                   = var.project
+  environment               = var.environment
+  project_id                = var.project_id
+  region                    = var.gcp_region
+  vpc_self_link             = module.networking.vpc_self_link
   private_subnet_self_links = module.networking.private_subnet_self_links
-  kms_key_id             = module.security.kms_key_id
+  kms_key_id                = module.security.kms_key_id
 
   node_pools = {
     general = {
@@ -150,18 +150,18 @@ module "cloud_run" {
 module "cloud_sql" {
   source = "../../modules/cloud-sql"
 
-  project              = var.project
-  environment          = var.environment
-  project_id           = var.project_id
-  region               = var.gcp_region
-  vpc_self_link        = module.networking.vpc_self_link
-  database_version     = "POSTGRES_16"
-  tier                 = "db-f1-micro"
-  disk_size            = 20
-  availability_type    = "ZONAL"
+  project                 = var.project
+  environment             = var.environment
+  project_id              = var.project_id
+  region                  = var.gcp_region
+  vpc_self_link           = module.networking.vpc_self_link
+  database_version        = "POSTGRES_16"
+  tier                    = "db-f1-micro"
+  disk_size               = 20
+  availability_type       = "ZONAL"
   backup_retained_backups = 7
-  deletion_protection  = false
-  kms_key_id           = module.security.kms_key_id
+  deletion_protection     = false
+  kms_key_id              = module.security.kms_key_id
 
   labels = local.common_labels
 }

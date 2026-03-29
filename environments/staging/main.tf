@@ -34,14 +34,14 @@ module "security" {
 module "iam" {
   source = "../../modules/iam"
 
-  project                    = var.project
-  environment                = var.environment
-  project_id                 = var.project_id
-  create_compute_sa          = true
-  create_cloud_run_sa        = true
-  create_cloud_functions_sa  = false
-  kms_key_id                 = module.security.kms_key_id
-  gcs_bucket_names           = values(module.gcs.bucket_names)
+  project                   = var.project
+  environment               = var.environment
+  project_id                = var.project_id
+  create_compute_sa         = true
+  create_cloud_run_sa       = true
+  create_cloud_functions_sa = false
+  kms_key_id                = module.security.kms_key_id
+  gcs_bucket_names          = values(module.gcs.bucket_names)
 
   labels = local.common_labels
 }
@@ -168,20 +168,20 @@ module "cloud_run" {
 module "cloud_sql" {
   source = "../../modules/cloud-sql"
 
-  project              = var.project
-  environment          = var.environment
-  project_id           = var.project_id
-  region               = var.gcp_region
-  vpc_self_link        = module.networking.vpc_self_link
-  database_version     = "POSTGRES_16"
-  tier                 = "db-custom-2-7680"
-  disk_size            = 20
-  disk_autoresize_limit = 100
-  availability_type    = "ZONAL"
+  project                 = var.project
+  environment             = var.environment
+  project_id              = var.project_id
+  region                  = var.gcp_region
+  vpc_self_link           = module.networking.vpc_self_link
+  database_version        = "POSTGRES_16"
+  tier                    = "db-custom-2-7680"
+  disk_size               = 20
+  disk_autoresize_limit   = 100
+  availability_type       = "ZONAL"
   backup_retained_backups = 14
-  deletion_protection  = true
-  enable_insights      = true
-  kms_key_id           = module.security.kms_key_id
+  deletion_protection     = true
+  enable_insights         = true
+  kms_key_id              = module.security.kms_key_id
 
   labels = local.common_labels
 }

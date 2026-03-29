@@ -9,10 +9,10 @@
 resource "google_cloudfunctions2_function" "this" {
   for_each = var.functions
 
-  name        = "${local.name_prefix}-${each.key}"
-  project     = var.project_id
-  location    = var.region
-  description = each.value.description != "" ? each.value.description : "Cloud Function: ${each.key}"
+  name         = "${local.name_prefix}-${each.key}"
+  project      = var.project_id
+  location     = var.region
+  description  = each.value.description != "" ? each.value.description : "Cloud Function: ${each.key}"
   kms_key_name = var.kms_key_id != "" ? var.kms_key_id : null
 
   build_config {
@@ -28,16 +28,16 @@ resource "google_cloudfunctions2_function" "this" {
   }
 
   service_config {
-    available_memory                 = "${each.value.memory_mb}M"
-    timeout_seconds                  = each.value.timeout_seconds
-    min_instance_count               = each.value.min_instances
-    max_instance_count               = each.value.max_instances
-    service_account_email            = var.service_account_email
-    ingress_settings                 = each.value.ingress_settings
-    all_traffic_on_latest_revision   = true
-    environment_variables            = each.value.env_vars
-    vpc_connector                    = each.value.vpc_connector != "" ? each.value.vpc_connector : null
-    vpc_connector_egress_settings    = each.value.vpc_connector != "" ? "PRIVATE_RANGES_ONLY" : null
+    available_memory               = "${each.value.memory_mb}M"
+    timeout_seconds                = each.value.timeout_seconds
+    min_instance_count             = each.value.min_instances
+    max_instance_count             = each.value.max_instances
+    service_account_email          = var.service_account_email
+    ingress_settings               = each.value.ingress_settings
+    all_traffic_on_latest_revision = true
+    environment_variables          = each.value.env_vars
+    vpc_connector                  = each.value.vpc_connector != "" ? each.value.vpc_connector : null
+    vpc_connector_egress_settings  = each.value.vpc_connector != "" ? "PRIVATE_RANGES_ONLY" : null
   }
 
   labels = merge(
